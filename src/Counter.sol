@@ -25,7 +25,7 @@ contract erc20 {
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(_to != address(0), "Zero address");          // fix: added zero address check
+        require(_to != address(0), "Zero address");         
         require(balance[msg.sender] >= _value, "Insufficient balance");
         balance[msg.sender] -= _value;
         balance[_to] += _value;
@@ -34,14 +34,14 @@ contract erc20 {
     }
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
-        require(_spender != address(0), "Zero address");     // fix: added zero address check
+        require(_spender != address(0), "Zero address");    
         allowance[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-        require(_to != address(0), "Zero address");          // fix: added zero address check
+        require(_to != address(0), "Zero address");          
         require(balance[_from] >= _value, "Insufficient balance");
         require(allowance[_from][msg.sender] >= _value, "Allowance exceeded");
         balance[_from] -= _value;
@@ -52,7 +52,7 @@ contract erc20 {
     }
 
     function mint(address _to, uint256 _amount) public {
-        require(msg.sender == owner, "Not owner");           // fix: only owner can mint
+        require(msg.sender == owner, "Not owner");           
         require(_to != address(0), "Zero address");
         totalSupply += _amount;
         balance[_to] += _amount;
