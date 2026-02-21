@@ -2,8 +2,8 @@
 pragma solidity ^0.8.20;
 
 contract erc20 {
-    mapping(address => uint256) public balance;
-    mapping(address => mapping(address => uint256)) public allowance;
+    mapping(address => uint256) public balance; //maps the address to the balance of the token
+    mapping(address => mapping(address => uint256)) public allowance; //maps the address to another mapping of address to uint256
 
     string public Jide = "JideToken";   
     uint8 public decimal = 18;          
@@ -64,5 +64,12 @@ contract erc20 {
         balance[msg.sender] -= _amount;
         totalSupply -= _amount;
         emit Transfer(msg.sender, address(0), _amount);
+    }
+
+    //save ERC20 token for a person 
+    // save ether and get the balance of the person
+
+    function saveToken(uint256 _amount) public {
+        
     }
 }
